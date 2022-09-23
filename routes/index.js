@@ -9,18 +9,18 @@ const NotFoundError = require('../errors/NotFoundError');
 const router = express.Router();
 router.use(express.json());
 
-router.use('/movies', auth, movieRouter);
-router.use('/users', auth, userRouter);
+router.use('/api/movies', auth, movieRouter);
+router.use('/api/users', auth, userRouter);
 
-router.get('/crash-test', () => {
+router.get('/api/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
 
-router.post('/signin', loginValidation, login);
-router.post('/signup', registerUserValidation, createUser);
-router.get('/signout', (req, res) => {
+router.post('/api/signin', loginValidation, login);
+router.post('/api/signup', registerUserValidation, createUser);
+router.get('/api/signout', (req, res) => {
   res.clearCookie('jwt').send({ message: 'Успешный выход' });
 });
 router.use(auth, () => {
