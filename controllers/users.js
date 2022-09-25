@@ -63,6 +63,8 @@ const updateProfile = (req, res, next) => {
     .catch((e) => {
       if (e.name === 'ValidationError') {
         next(new BadRequestError('Переданы неверные данные'));
+      } else if (e.code === 11000) {
+        next(new ConflictError('Такая почта уже существует'));
       } else next(e);
     });
 };

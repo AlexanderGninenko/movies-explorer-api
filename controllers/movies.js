@@ -55,7 +55,8 @@ const deleteMovie = (req, res, next) => {
     })
     .then((movie) => {
       if (movie.owner.toString() === req.user._id) {
-        return Movie.findByIdAndRemove(req.params.id).then((data) => res.send(`Успешно удалено ${data}`));
+        return Movie.findByIdAndRemove(req.params.id).then((data) => res.send(data))
+          .catch(next);
       }
       throw new ForbiddenError('Запрещено');
     })

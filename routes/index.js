@@ -12,12 +12,6 @@ router.use(express.json());
 router.use('/api/movies', auth, movieRouter);
 router.use('/api/users', auth, userRouter);
 
-router.get('/api/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
-
 router.post('/api/signin', loginValidation, login);
 router.post('/api/signup', registerUserValidation, createUser);
 router.get('/api/signout', (req, res) => {
