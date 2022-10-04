@@ -32,4 +32,4 @@ app.use(errors());
 
 app.use(errorUniHandler);
 
-app.listen(PORT);
+app.listen(PORT, ()=>console.log(`running on ${PORT}`));
