@@ -15,7 +15,7 @@ router.use('/api/users', auth, userRouter);
 router.post('/api/signin', loginValidation, login);
 router.post('/api/signup', registerUserValidation, createUser);
 router.get('/api/signout', (req, res) => {
-  res.cookie('jwt', null, {
+  res.clearCookie('jwt', {
     sameSite: 'none',
     secure: true,
   }).send({ message: 'Успешный выход' });
