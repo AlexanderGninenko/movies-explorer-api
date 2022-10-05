@@ -15,7 +15,7 @@ router.use('/api/users', auth, userRouter);
 router.post('/api/signin', loginValidation, login);
 router.post('/api/signup', registerUserValidation, createUser);
 router.get('/api/signout', (req, res) => {
-  res.clearCookie('jwt').send({ message: 'Успешный выход' });
+  res.cookie('jwt', null).send({ message: 'Успешный выход' });
 });
 router.use(auth, () => {
   throw new NotFoundError('Такой страницы не существует');

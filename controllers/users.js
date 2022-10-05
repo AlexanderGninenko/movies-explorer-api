@@ -12,12 +12,16 @@ const login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign(
+        { _id: user._id },
+        NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
+        { expiresIn: '7d' },
+      );
       res
         .cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
-          sameSite: "none",
+          sameSite: 'none',
           secure: true,
         })
         .send({ token });
@@ -35,31 +39,38 @@ const getMyUser = (req, res, next) => {
 };
 
 const createUser = (req, res, next) => {
-  const {
-    name, email, password,
-  } = req.body;
-  bcrypt.hash(password, 7).then((hash) => {
-    User.create({
-      name, email, password: hash,
-    }).then((user) => res.send({
-      name: user.name,
-      email: user.email,
-    }))
-      .catch((e) => {
-        if (e.code === 11000) {
-          next(new ConflictError('Такой пользователь уже существует'));
-        } else if (e.name === 'ValidationError') {
-          next(new BadRequestError('Переданы неверные данные'));
-        } else next(e);
-      });
-  })
+  const { name, email, password } = req.body;
+  bcrypt
+    .hash(password, 7)
+    .then((hash) => {
+      User.create({
+        name,
+        email,
+        password: hash,
+      })
+        .then((user) => res.send({
+          name: user.name,
+          email: user.email,
+        }))
+        .catch((e) => {
+          if (e.code === 11000) {
+            next(new ConflictError('Такой пользователь уже существует'));
+          } else if (e.name === 'ValidationError') {
+            next(new BadRequestError('Переданы неверные данные'));
+          } else next(e);
+        });
+    })
     .catch(next);
 };
 
 const updateProfile = (req, res, next) => {
   const { name, email } = req.body;
   const { _id } = req.user;
-  User.findByIdAndUpdate(_id, { name, email }, { new: true, runValidators: true })
+  User.findByIdAndUpdate(
+    _id,
+    { name, email },
+    { new: true, runValidators: true },
+  )
     .then((user) => res.send({ data: user }))
     .catch((e) => {
       if (e.name === 'ValidationError') {
