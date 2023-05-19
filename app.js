@@ -9,7 +9,7 @@ const routes = require("./routes");
 const errorUniHandler = require("./middlewares/errorHandler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 
-const { PORT = 4010, MONGO_DB = "mongodb://localhost:27017/moviesdb" } =
+const { PORT = 4010, MONGO_DB = "mongodb://127.0.0.1:27017/moviesdb" } =
   process.env;
 
 mongoose.connect(MONGO_DB, {
