@@ -8,6 +8,7 @@
 ___
 
 ❔ **О проекте**
+
 Данный проект представляет собой бэкенд часть проекта Movies Explorer.
 Развернут на Node.js с помощью Express.
 Используется база данных MongoDB.
@@ -26,6 +27,7 @@ ___
 ___
 
 ⚙️ **Инструкция по развёртыванию:**
+
 * Клонировать репозиторий
 ```sh
 $ git clone https://github.com/AlexanderGninenko/movies-explorer-api.git
@@ -40,6 +42,7 @@ $ npm run dev
 ```
 
 #### 🔧 Технологии
+
 ![JavaScript](https://img.shields.io/badge/-JavaScript-05122A?style=flat&logo=javascript)&nbsp;
 ![Node.js](https://img.shields.io/badge/-Node.js-05122A?style=flat&logo=Node.js)&nbsp;
 ![Express](https://img.shields.io/badge/-Express-05122A?style=flat&logo=Express)&nbsp;
