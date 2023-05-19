@@ -1,13 +1,14 @@
 const options = {
   origin: [
-    'https://alexandergninenko.nomoredomains.sbs',
-    'https://api.alexandergninenko.nomoredomains.sbs',
-    'http://localhost:3000',
+    "https://main--movies-explorer.netlify.app",
+    "https://alexandergninenko.nomoredomains.sbs",
+    "https://api.alexandergninenko.nomoredomains.sbs",
+    "http://localhost:3000",
   ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   preflightContinue: false,
   optionsSuccessStatus: 204,
-  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  allowedHeaders: ["Content-Type", "origin", "Authorization"],
   credentials: true,
 };
 
