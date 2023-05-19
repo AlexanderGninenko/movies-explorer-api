@@ -1,6 +1,6 @@
 const options = {
   origin: [
-    "https://main--movies-explorer.netlify.app",
+    "https://movies-explorer.netlify.app",
     "https://alexandergninenko.nomoredomains.sbs",
     "https://api.alexandergninenko.nomoredomains.sbs",
     "http://localhost:3000",
